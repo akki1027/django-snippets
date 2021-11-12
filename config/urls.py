@@ -22,6 +22,7 @@ from snippets.views import top  # 追加
 
 urlpatterns = [
     path('', top, name='top'),                    # 追加 ルート
-    path('snippets/', include('snippets.urls')),  # snippetes/urls.pyの読み込み
+    path('snippets/', include('snippets.urls')),  # snippets/urls.pyの読み込み
+    path('accounts/', include('accounts.urls')),  # accounts/urls.pyの読み込み
     path('admin/', admin.site.urls),
 ]
