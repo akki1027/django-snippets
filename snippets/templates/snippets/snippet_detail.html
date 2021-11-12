@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load pygmentize %}
+{% block extraheader %}
+<style>{% pygments_css %}</style>
+{% endblock %}
+{% block content %}
+<div>
+    <h1>{{ snippet.title }} by {{ snippet.created_by.username }}</h1>
+    <small>投稿日： {{ snippet.created_at|date:"DATETIME_FORMAT" }}</small>
+    {% if user.is_authenticated and snippet.created_by.username %}
+    <a class="btn btn-outline-success" href="{% url 'snippet_edit' snippet.id %}">編集</a>
+    {% endif %}
+</div>
+<div class="mt-3">
+    {{ snippet.code|pygmentize:"python3" }}
+</div>
+<p>{{ snippet.description|urlize }}</p>
+{% endblock %}
