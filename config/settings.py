@@ -41,8 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'snippets.apps.SnippetsConfig',  # snippets app
+    'accounts.apps.AccountsConfig',  # accounts app
     'django_bootstrap5',  # bootstrap5
-    'pygments_renderer'  # pygments renderer
+    'pygments_renderer',  # pygments renderer
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,8 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Auth
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
