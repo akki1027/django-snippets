@@ -13,10 +13,33 @@ class Snippet(models.Model):
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL,
                                    verbose_name='投稿者',
                                    on_delete=models.CASCADE)
-    created_at = models.DateTimeField(
-        '投稿日', auto_now_add=True)  # モデルのインスタンスを保存するタイミングで現在日時が自動的にセットされる
-    updated_at = models.DateTimeField(
-        '更新日', auto_now=True)  # モデルを更新するたびにその時点での時刻を自動で設定してくれる
+    # モデルのインスタンスを保存するタイミングで現在日時が自動的にセットされる
+    created_at = models.DateTimeField('投稿日', auto_now_add=True)
+    # モデルを更新するたびにその時点での時刻を自動で設定してくれる
+    updated_at = models.DateTimeField('更新日', auto_now=True)
+
+    class Meta:
+        db_table = "snippets"
 
     def __str__(self) -> str:
         return self.title
+
+
+class Comment(models.Model):
+    text = models.TextField('本文', blank=False)
+    commented_to = models.ForeignKey(Snippet,
+                                     verbose_name='スニペット',
+                                     on_delete=models.CASCADE)
+    commented_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                     verbose_name='投稿者',
+                                     on_delete=models.CASCADE)
+    # モデルのインスタンスを保存するタイミングで現在日時が自動的にセットされる
+    created_at = models.DateTimeField('投稿日', auto_now_add=True)
+    # モデルを更新するたびにその時点での時刻を自動で設定してくれる
+    updated_at = models.DateTimeField('更新日', auto_now=True)
+
+    class Meta:
+        db_table = "comments"
+
+    def __str__(self) -> str:
+        return f'{self.pk} {self.name}'
