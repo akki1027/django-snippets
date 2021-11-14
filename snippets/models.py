@@ -42,4 +42,4 @@ class Comment(models.Model):
         db_table = "comments"
 
     def __str__(self) -> str:
-        return f'{self.pk} {self.name}'
+        return f'{self.pk} {self.text}'
